@@ -13,7 +13,15 @@ const AddButton: React.VFC = () => {
   );
 
   const onClick = useCallback(() => {
-    setTodoList([...todoList, { title: todoTitleFormValue }]);
+    setTodoList([
+      ...todoList,
+      {
+        title: todoTitleFormValue,
+        state: "To do",
+        priority: "☆☆☆",
+        description: "",
+      },
+    ]);
     // タスクを追加したら入力欄は空にする
     setTitleFormValue("");
   }, [todoList, todoTitleFormValue, setTodoList, setTitleFormValue]);
