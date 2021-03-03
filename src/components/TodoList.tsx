@@ -8,11 +8,11 @@ interface TaskProps {
 const Task: React.VFC<TaskProps> = ({ todo }) => {
   const { title, state, priority } = todo;
   return (
-    <div>
-      <div>{title}</div>
-      <div>{state}</div>
-      <div>{priority}</div>
-    </div>
+    <tr className="">
+      <td className="border p-1 w-96">{title}</td>
+      <td className="border p-1 w-20">{state}</td>
+      <td className="border p-1 w-20">{priority}</td>
+    </tr>
   );
 };
 
@@ -23,15 +23,17 @@ const TodoList: React.VFC = () => {
   return (
     <div>
       <p>タスク一覧</p>
-      <ul>
+
+      <table>
+        <tr className="text-left">
+          <th className="border p-1">Title</th>
+          <th className="border p-1">State</th>
+          <th className="border p-1">Priority</th>
+        </tr>
         {list.map((todo, i: number) => {
-          return (
-            <li key={`${todo.title}_${i}`}>
-              <Task todo={todo} />
-            </li>
-          );
+          return <Task todo={todo} />;
         })}
-      </ul>
+      </table>
     </div>
   );
 };

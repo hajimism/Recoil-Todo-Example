@@ -5,13 +5,13 @@ import SearchForm from "./components/SearchForm";
 
 const App: React.VFC = () => {
   return (
-    <>
-      <h1 className="m-2">Notion like To-do App</h1>
+    <div className="m-2">
+      <h1 className="text-4xl">Notion like To-do App</h1>
       <TitleForm />
       <AddButton />
       <SearchForm />
       <TodoList />
-    </>
+    </div>
   );
 };
 
