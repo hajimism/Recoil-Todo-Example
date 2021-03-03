@@ -17,8 +17,8 @@ const AddButton: React.VFC = () => {
       ...todoList,
       {
         title: todoTitleFormValue,
-        state: "To do",
-        priority: "☆☆☆",
+        state: 1,
+        priority: 1,
         description: "",
       },
     ]);
