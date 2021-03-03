@@ -15,16 +15,14 @@ const SearchForm: React.VFC = () => {
   );
 
   return (
-    <label>
-      検索:
-      <input
-        type="text"
-        value={searchTextFormValue}
-        onChange={onChange}
-        name="title"
-        style={{ margin: 12 }}
-      />
-    </label>
+    <input
+      type="text"
+      value={searchTextFormValue}
+      onChange={onChange}
+      name="title"
+      placeholder="Type to Search..."
+      style={{ margin: 12 }}
+    />
   );
 };
 

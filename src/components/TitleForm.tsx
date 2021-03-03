@@ -19,16 +19,14 @@ const TitleForm: React.VFC = () => {
   );
 
   return (
-    <label>
-      タスク名:
-      <input
-        type="text"
-        value={todoTitleFormValue}
-        onChange={onChange}
-        name="title"
-        style={{ margin: 12 }}
-      />
-    </label>
+    <input
+      type="text"
+      value={todoTitleFormValue}
+      onChange={onChange}
+      name="title"
+      placeholder="Add new task..."
+      style={{ margin: 12 }}
+    />
   );
 };
 
