@@ -21,7 +21,7 @@ const SearchForm: React.VFC = () => {
       onChange={onChange}
       name="title"
       placeholder="Type to Search..."
-      style={{ margin: 12 }}
+      className="hover:bg-gray-100 cursor-pointer m-4 mb-2 px-2 py-1"
     />
   );
 };

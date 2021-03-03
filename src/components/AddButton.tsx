@@ -26,7 +26,14 @@ const AddButton: React.VFC = () => {
     setTitleFormValue("");
   }, [todoList, todoTitleFormValue, setTodoList, setTitleFormValue]);
 
-  return <button onClick={onClick}>追加</button>;
+  return (
+    <button
+      onClick={onClick}
+      className="hover:bg-gray-100 cursor-pointer px-2 py-1"
+    >
+      Add
+    </button>
+  );
 };
 
 export default AddButton;
