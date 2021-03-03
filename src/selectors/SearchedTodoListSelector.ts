@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { todoListState } from "../atoms/TodoListAtoms";
+import { todoListState } from "../atoms/TodoListAtom";
 import { searchTextFormState } from "../atoms/SearchTextFormAtom";
 import { Todo } from "../types/Todo";
 
