@@ -1,5 +1,17 @@
-import * as React from "react";
+import TitleForm from "./components/TitleForm";
+import AddButton from "./components/AddButton";
+import TodoList from "./components/TodoList";
+import SearchForm from "./components/SearchForm";
 
-const App: React.FC = () => <div className="App">Hello world</div>;
+const App: React.VFC = () => {
+  return (
+    <>
+      <TitleForm />
+      <AddButton />
+      <SearchForm />
+      <TodoList />
+    </>
+  );
+};
 
 export default App;
