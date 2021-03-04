@@ -6,7 +6,7 @@ export type Todo = {
 };
 
 export type TaskState = keyof typeof States;
-type Priority = keyof typeof Priorities;
+export type Priority = keyof typeof Priorities;
 
 export const States = {
   1: { label: "TODO", color: "#fff9c4" },

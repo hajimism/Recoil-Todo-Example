@@ -1,5 +1,4 @@
-import TitleForm from "./components/TitleForm";
-import AddButton from "./components/AddButton";
+import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import SearchForm from "./components/SearchForm";
 
@@ -7,8 +6,7 @@ const App: React.VFC = () => {
   return (
     <div className="m-2">
       <h1 className="text-4xl">Notion like To-do App</h1>
-      <TitleForm />
-      <AddButton />
+      <Form />
       <SearchForm />
       <TodoList />
     </div>
