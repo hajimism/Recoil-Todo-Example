@@ -1,4 +1,5 @@
-import { useRecoilValue, useSetRecoilState, SetterOrUpdater } from "recoil";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
 import {
   todoTitleFormState,
   todoStateState,
@@ -6,6 +7,7 @@ import {
 } from "../atoms/TodoTitleFormAtom";
 import { todoListState } from "../atoms/TodoListAtom";
 import { Todo, TaskState, Priority } from "../types/Todo";
+import { useRecoil } from "../hooks/useRecoil";
 import { useForm } from "react-hook-form";
 
 // 新規TODOを追加するためのフォーム
@@ -13,47 +15,48 @@ const Form: React.VFC = () => {
   const { register, handleSubmit } = useForm();
 
   //   TODOのタイトルの値と更新関数
-  const todoTitleForm = useRecoilValue<string>(todoTitleFormState);
-  const setTodoTitle: SetterOrUpdater<string> = useSetRecoilState(
+  const [todoTitleForm, setTodoTitle] = useRecoilState<string>(
     todoTitleFormState
   );
-
-  //   TODOの状態の値と更新関数
-  const todoState = useRecoilValue<TaskState>(todoStateState);
-  const setTodoState: SetterOrUpdater<TaskState> = useSetRecoilState(
-    todoStateState
-  );
-
-  //   TODOの優先度の値と更新関数
-  const todoPriority = useRecoilValue<Priority>(todoPriorityState);
-  const setTodoPriority: SetterOrUpdater<Priority> = useSetRecoilState(
+  const [todoState, setTodoState] = useRecoilState<TaskState>(todoStateState);
+  const [todoPriority, setTodoPriority] = useRecoilState<Priority>(
     todoPriorityState
   );
-
-  //   TODOリストの値と更新関数
-  const todoList: Todo[] = useRecoilValue(todoListState);
-  const setTodoList: SetterOrUpdater<Todo[]> = useSetRecoilState(todoListState);
+  const [todoList, setTodoList] = useRecoilState<Todo[]>(todoListState);
 
   const onSubmit = (data: Todo) => {
-    setTodoTitle(data.title);
     setTodoState(data.state);
     setTodoPriority(data.priority);
     // TODOを追加
     setTodoList([
       ...todoList,
       {
-        title: todoTitleForm,
-        state: todoState,
-        priority: todoPriority,
+        title: todoTitleForm ? todoTitleForm : "",
+        state: todoState ? todoState : 1,
+        priority: todoPriority ? todoPriority : 1,
         description: "",
       },
     ]);
     setTodoTitle("");
   };
 
+  const onChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      // 先に取得したsetTodoTitleFormValueに対して更新したい値を渡して実行
+      setTodoTitle(event.target.value);
+    },
+    [setTodoTitle]
+  );
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input name="title" ref={register} placeholder="Add new task..." />
+      <input
+        name="title"
+        ref={register}
+        onChange={onChange}
+        placeholder="Add new task..."
+        className="hover:bg-gray-100 cursor-pointer m-4 mb-2 px-2 py-1"
+      />
 
       <select name="state" ref={register}>
         <option value="">Select...</option>
@@ -69,7 +72,11 @@ const Form: React.VFC = () => {
         <option value="3">☆☆☆</option>
       </select>
 
-      <input type="submit" />
+      <input
+        type="submit"
+        value="Add"
+        className="hover:bg-gray-100 cursor-pointer m-4 mb-2 px-2 py-1"
+      />
     </form>
   );
 };
