@@ -1,4 +1,5 @@
 import { Todo } from "../types/Todo";
+import { StateProperty, PriorityProperty } from "./Properties";
 
 export interface TaskModalProps {
   todo: Todo;
@@ -16,8 +17,14 @@ const TaskModal: React.SFC<TaskModalProps> = ({ todo, toggle }) => {
         <div className="max-w-screen-md">
           <h1>{title}</h1>
           <ul>
-            <li>State:{state}</li>
-            <li>Priority:{priority}/</li>
+            <li>
+              State:
+              <StateProperty state={state} />
+            </li>
+            <li>
+              Priority:
+              <PriorityProperty priority={priority} />
+            </li>
           </ul>
           <div>{description}</div>
         </div>
