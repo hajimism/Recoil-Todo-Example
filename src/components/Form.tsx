@@ -7,14 +7,12 @@ import {
 } from "../atoms/TodoTitleFormAtom";
 import { todoListState } from "../atoms/TodoListAtom";
 import { Todo, TaskState, Priority } from "../types/Todo";
-import { useRecoil } from "../hooks/useRecoil";
 import { useForm } from "react-hook-form";
 
 // 新規TODOを追加するためのフォーム
 const Form: React.VFC = () => {
   const { register, handleSubmit } = useForm();
 
-  //   TODOのタイトルの値と更新関数
   const [todoTitleForm, setTodoTitle] = useRecoilState<string>(
     todoTitleFormState
   );
